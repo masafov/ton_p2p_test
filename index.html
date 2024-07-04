@@ -1,12 +1,37 @@
 <html>
     <head>
         <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     </head>
     <body>
         Hello
-        <p id="p">{{}}</p>
+
+        <p>
+            <textarea id="output" rows="10" style="width: 100%;"></textarea>
+        </p>
+        <p>
+            <button id="btn1">B1</button>
+            <button id="btn2">B2</button>
+        </p>
     </body>
     <script>
-        document.getElementById("p").innerText = window.Telegram.WebApp.WebAppUser.id;
+        $( document ).ready(function() {
+            console.log( "ready!" );
+            $("#output").append("ready\r\n");
+
+            $("#btn1").click(() => {
+                console.log( "btn1 click" );
+                $("#output").append("btn1 click\r\n");
+            });
+
+            $("#btn2").click(() => {
+                console.log( "btn2 click" );
+                $("#output").append("btn2 click\r\n");
+
+                $.get( "https://localhost:5001/Home", (res)=> {
+                    $("#output").append(res + "\r\n");
+                });
+            });
+        });
     </script>
 </html>
