@@ -28,9 +28,20 @@
                 console.log( "btn2 click" );
                 $("#output").append("btn2 click\r\n");
 
-                $.get( "https://localhost:5001/Home", (res)=> {
-                    $("#output").append(res + "\r\n");
-                });
+                // $.get( "https://localhost:5001/Home", (res)=> {
+                //     $("#output").append(res + "\r\n");
+                // });
+
+                $.ajax({
+                    url: "https://localhost:5001/Home",
+                    type: "GET",
+                    beforeSend: (xhr) => {
+		                xhr.setRequestHeader('Authorization', 'bearer ');
+	                },
+                    success: (res) => {
+                        $("#output").append(res + "\r\n");
+                    }
+                })
             });
         });
     </script>
