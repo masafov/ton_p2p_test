@@ -36,7 +36,7 @@
                     url: "https://localhost:5001/Home",
                     type: "GET",
                     beforeSend: (xhr) => {
-		                xhr.setRequestHeader('Authorization', `bearer ${window.Telegram.WebApp.initData}`);
+		                xhr.setRequestHeader('Authorization', `tg ${window.Telegram.WebApp.initData}`);
 	                },
                     success: (res) => {
                         $("#output").append(res + "\r\n");
